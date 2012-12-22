@@ -1,9 +1,6 @@
 package org.misja.bg.model;
 
-import com.google.common.collect.Lists;
-
 import java.util.BitSet;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.max;
@@ -23,37 +20,37 @@ public class Position {
   }
 
   /**
-   * Position: 0 = off, 25 = bar, 1..24 is the position of the checker from the player's point of view.
+   * Position: 0 = off, 25 = bar, 1..24 is the position of the checker from the side's point of view.
    *
-   * @param player
+   * @param side
    * @return the positions
    */
-  public List<Integer> getCheckerPositions(Player player) {
-    switch(player) {
-      case PLAYER: return playerCheckers;
-      case OPPONENT: return opponentCheckers;
-      default: throw new IllegalArgumentException("Unknown player type: " + player);
+  public List<Integer> getCheckerPositions(Side side) {
+    switch(side) {
+      case THIS_SIDE: return playerCheckers;
+      case OTHER_SIDE: return opponentCheckers;
+      default: throw new IllegalArgumentException("Unknown side type: " + side);
     }
   }
 
-  public boolean hasCheckersOnBar(Player player) {
-    return getCheckerPositions(player).contains(25);
+  public boolean hasCheckersOnBar(Side side) {
+    return getCheckerPositions(side).contains(25);
   }
 
-  public boolean hasPoint(Player player, int point) {
-    return getNrCheckersOnPoint(player, point) >= 2;
+  public boolean hasPoint(Side side, int point) {
+    return getNrCheckersOnPoint(side, point) >= 2;
   }
 
-  public int getNrCheckersOnPoint(Player player, int point) {
-    return count(getCheckerPositions(player), point);
+  public int getNrCheckersOnPoint(Side side, int point) {
+    return count(getCheckerPositions(side), point);
   }
 
-  public int getHighestPoint(Player player) {
-    return max(getCheckerPositions(player));
+  public int getHighestPoint(Side side) {
+    return max(getCheckerPositions(side));
   }
 
-  public boolean isBearingOff(Player player) {
-    return getHighestPoint(player) <= 6;
+  public boolean isBearingOff(Side side) {
+    return getHighestPoint(side) <= 6;
   }
 
   public String getId() {
@@ -78,21 +75,21 @@ public class Position {
   }
 
   /**
-   * Assumes that PLAYER is always the one on roll. This matters for compatibility with the gnu id.
+   * Assumes that THIS_SIDE is always the one on roll. This matters for compatibility with the gnu id.
    *
    * @return the gnu position id
    */
   private String getPositionId() {
     BitSet bits = new BitSet();
-    // Start with PLAYER because it's assumed he's on roll.
-    int pos = fillBitsForPlayer(Player.PLAYER, bits, 0);
-    fillBitsForPlayer(Player.OPPONENT, bits, pos);
+    // Start with THIS_SIDE because it's assumed he's on roll.
+    int pos = fillBitsForPlayer(Side.THIS_SIDE, bits, 0);
+    fillBitsForPlayer(Side.OTHER_SIDE, bits, pos);
     return makeBase64String(bits, 14);
   }
 
-  private int fillBitsForPlayer(Player player, BitSet bits, int pos) {
+  private int fillBitsForPlayer(Side side, BitSet bits, int pos) {
     for (int point = 1; point <= 25; point++) {
-      int nr = getNrCheckersOnPoint(player, point);
+      int nr = getNrCheckersOnPoint(side, point);
       for (int t = 0; t < nr; t++) {
         bits.set(pos++, true);
       }

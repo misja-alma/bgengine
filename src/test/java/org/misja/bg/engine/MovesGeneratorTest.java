@@ -30,7 +30,7 @@ public class MovesGeneratorTest {
         move(8, 2, 8, 7),
         move(8, 2, 6, 5));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(6, 1));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(6, 1));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -44,7 +44,7 @@ public class MovesGeneratorTest {
         move(25, 24, 13, 7),
         move(25, 24, 8, 2));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(6, 1));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(6, 1));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -62,7 +62,7 @@ public class MovesGeneratorTest {
         move(25, 23, 8, 7),
         move(25, 23, 6, 5));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(2, 1));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(2, 1));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -74,7 +74,7 @@ public class MovesGeneratorTest {
     List<Move> expected = Lists.newArrayList(
         move(25, 23, 25, 24));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(2, 1));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(2, 1));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -84,7 +84,7 @@ public class MovesGeneratorTest {
   public void testGenerateAllMoves_dancing_emptyListReturned() throws Exception {
     Position initialPosition = createOneOnBarPosition();
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(6, 6));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(6, 6));
 
     assertThat(result.size(), is(0));
   }
@@ -95,7 +95,7 @@ public class MovesGeneratorTest {
     List<Move> expected = Lists.newArrayList(
         new Move(new Move.CheckerMove(25, 24)));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(6, 1));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(6, 1));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -107,7 +107,7 @@ public class MovesGeneratorTest {
     List<Move> expected = Lists.newArrayList(
         new Move(new Move.CheckerMove(24, 18)));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(6, 2));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(6, 2));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -119,7 +119,7 @@ public class MovesGeneratorTest {
     List<Move> expected = Lists.newArrayList(
         new Move(new Move.CheckerMove(24, 22)));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(3, 2));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(3, 2));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -133,7 +133,7 @@ public class MovesGeneratorTest {
         move(24, 23, 23, 18),
         move(24, 23, 24, 19));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(5, 1));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(5, 1));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -148,7 +148,7 @@ public class MovesGeneratorTest {
         move(13, 8, 13, 8, 8, 3, 8, 3),
         move(13, 8, 8, 3, 8, 3, 8, 3));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(5, 5));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(5, 5));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -162,7 +162,7 @@ public class MovesGeneratorTest {
         move(5, 0, 5, 4),
         move(5, 0, 2, 1));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(5, 1));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(5, 1));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));
@@ -176,7 +176,7 @@ public class MovesGeneratorTest {
         move(5, 0, 5, 4),
         move(5, 0, 2, 1));
 
-    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Player.PLAYER, new DiceRoll(6, 1));
+    List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(6, 1));
 
     assertThat(result, containsInAnyOrder(expected.toArray()));
     assertThat(result.size(), is(expected.size()));

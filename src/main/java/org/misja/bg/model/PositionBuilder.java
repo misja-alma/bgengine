@@ -11,7 +11,7 @@ public class PositionBuilder {
 
   public Position build() {
     if(playerCheckers.size() != 15) {
-      throw new InvalidStateException("Wrong number of checkers for Player!");
+      throw new InvalidStateException("Wrong number of checkers for Side!");
     }
     if(opponentCheckers.size() != 15) {
       throw new InvalidStateException("Wrong number of checkers for Opponent!");
@@ -19,23 +19,23 @@ public class PositionBuilder {
     return new Position(playerCheckers, opponentCheckers);
   }
 
-  public PositionBuilder addCheckers(Player player, int... points) {
-    addCheckers(getCheckersForPlayer(player), points);
+  public PositionBuilder addCheckers(Side side, int... points) {
+    addCheckers(getCheckersForPlayer(side), points);
     return this;
   }
 
-  public PositionBuilder addCheckers(Player player, List<Integer> checkers) {
-    getCheckersForPlayer(player).addAll(checkers);
+  public PositionBuilder addCheckers(Side side, List<Integer> checkers) {
+    getCheckersForPlayer(side).addAll(checkers);
     return this;
   }
 
-  private List<Integer> getCheckersForPlayer(Player player) {
-    switch(player) {
-      case PLAYER:
+  private List<Integer> getCheckersForPlayer(Side side) {
+    switch(side) {
+      case THIS_SIDE:
         return playerCheckers;
-      case OPPONENT:
+      case OTHER_SIDE:
         return opponentCheckers;
-      default: throw new IllegalArgumentException("Unknown player type: " + player);
+      default: throw new IllegalArgumentException("Unknown side type: " + side);
     }
   }
 
@@ -43,5 +43,11 @@ public class PositionBuilder {
     for(int point: points) {
       playerCheckers.add(point);
     }
+  }
+
+  public Position buildInitialPosition() {
+    addCheckers(Side.THIS_SIDE, 24, 24, 13, 13, 13, 13, 13, 8, 8, 8, 6, 6, 6, 6, 6);
+    addCheckers(Side.OTHER_SIDE, 24, 24, 13, 13, 13, 13, 13, 8, 8, 8, 6, 6, 6, 6, 6);
+    return build();
   }
 }

@@ -37,4 +37,10 @@ public class DiceRoll {
       return Lists.newArrayList(higherDie, higherDie, higherDie, higherDie);
     }
   }
+
+  @Override
+  public String toString() {
+    return higherDie +
+        "" + lowerDie;
+  }
 }
