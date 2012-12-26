@@ -76,9 +76,7 @@ public class MovesGenerator {
 
   private List<Move> findMovesStartingWith(Position position, Side side, List<Integer> dies, List<Move.CheckerMove> checkerMoves, int currentDie, Set<Position> reachedPositions) {
     List<Move> result = Lists.newArrayList();
-    if (checkerMoves.size() > 0) {
-      result.add(new Move(Lists.newArrayList(checkerMoves))); // add partial move, just in case no more die can be played.
-    }
+    result.add(new Move(Lists.newArrayList(checkerMoves))); // add partial move, just in case no more die can be played.
     for (int checker : getPossibleCheckersToMove(position, side)) {
       Move.CheckerMove checkerMove = new Move.CheckerMove(checker, Math.max(0, checker - dies.get(currentDie)));
       if (isValid(position, side, checkerMove, dies.get(currentDie))) {

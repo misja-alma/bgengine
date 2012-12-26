@@ -9,8 +9,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-// TODO checkermove.toString; somehow show hit
-// TODO after a hit; the next move doesnt seem to enter from the bar.
 public class Move implements Action {
   private final List<CheckerMove> checkerMoves;
 
@@ -80,6 +78,7 @@ public class Move implements Action {
   public static class CheckerMove {
     public final int from;
     public final int to;
+    private boolean hits;
 
     public CheckerMove(int from, int to) {
       this.from = from;
@@ -99,8 +98,11 @@ public class Move implements Action {
     private List<Integer> getNewCheckerPositionsForOpponent(Position position, Side side) {
       List<Integer> opponentCheckers = Lists.newArrayList(position.getCheckerPositions(side.invert()));
       if (position.getNrCheckersOnPoint(side.invert(), 25 - to) == 1) {
+        hits = true;
         opponentCheckers.remove(Integer.valueOf(25 - to));
-        opponentCheckers.add(0);
+        opponentCheckers.add(25);
+      } else {
+        hits = false;
       }
       return opponentCheckers;
     }
@@ -114,7 +116,7 @@ public class Move implements Action {
 
     @Override
     public String toString() {
-      return from + "/" + to;
+      return from + "/" + to + (hits? "*": "");
     }
 
     @Override

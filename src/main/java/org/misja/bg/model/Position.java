@@ -45,6 +45,17 @@ public class Position {
     return count(getCheckerPositions(side), point);
   }
 
+  public int getNrCheckersBeforePoint(Side side, int point) {
+    List<Integer> positions = getCheckerPositions(side);
+    int count = 0;
+    for(int pos: positions) {
+      if(pos > point) {
+        count++;
+      }
+    }
+    return count;
+  }
+
   public int getHighestPoint(Side side) {
     return max(getCheckerPositions(side));
   }

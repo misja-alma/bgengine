@@ -47,4 +47,32 @@ public class PositionTestUtils {
     builder.addCheckers(Side.OTHER_SIDE, 2, 13, 13, 13, 13, 13, 13, 13, 13, 9, 9, 10, 10, 11, 11);
     return builder.build();
   }
+
+  public static Position createWonPositionForThisSide() {
+    PositionBuilder builder = new PositionBuilder();
+    builder.addCheckers(Side.THIS_SIDE, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    builder.addCheckers(Side.OTHER_SIDE, 0, 13, 13, 13, 13, 13, 13, 13, 13, 9, 9, 10, 10, 11, 11);
+    return builder.build();
+  }
+
+  public static Position createWonPositionForOtherSide() {
+    PositionBuilder builder = new PositionBuilder();
+    builder.addCheckers(Side.OTHER_SIDE, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    builder.addCheckers(Side.THIS_SIDE, 0, 13, 13, 13, 13, 13, 13, 13, 13, 9, 9, 10, 10, 11, 11);
+    return builder.build();
+  }
+
+  public static Position createGammonPositionForThisSide() {
+    PositionBuilder builder = new PositionBuilder();
+    builder.addCheckers(Side.THIS_SIDE, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    builder.addCheckers(Side.OTHER_SIDE, 18, 13, 13, 13, 13, 13, 13, 13, 13, 9, 9, 10, 10, 11, 11);
+    return builder.build();
+  }
+
+  public static Position createBackgammonPositionForThisSide() {
+    PositionBuilder builder = new PositionBuilder();
+    builder.addCheckers(Side.THIS_SIDE, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    builder.addCheckers(Side.OTHER_SIDE, 19, 13, 13, 13, 13, 13, 13, 13, 13, 9, 9, 10, 10, 11, 11);
+    return builder.build();
+  }
 }

@@ -81,12 +81,13 @@ public class MovesGeneratorTest {
   }
 
   @Test
-  public void testGenerateAllMoves_dancing_emptyListReturned() throws Exception {
+  public void testGenerateAllMoves_dancing_emptyMoveReturned() throws Exception {
     Position initialPosition = createOneOnBarPosition();
 
     List<Move> result = movesGenerator.generateAllMoves(initialPosition, Side.THIS_SIDE, new DiceRoll(6, 6));
 
-    assertThat(result.size(), is(0));
+    assertThat(result.size(), is(1));
+    assertThat(result.get(0).getCheckerMoves().size(), is(0));
   }
 
   @Test

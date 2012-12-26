@@ -15,16 +15,6 @@ public class GameState {
     return winner != null;
   }
 
-  public Side calculateWinner() {
-    if(position.getNrCheckersOnPoint(Side.THIS_SIDE, 0) == 15) {
-      return Side.THIS_SIDE;
-    }
-    if(position.getNrCheckersOnPoint(Side.OTHER_SIDE, 0) == 15) {
-      return Side.OTHER_SIDE;
-    }
-    return null;
-  }
-
   public DiceRoll getDiceRoll() {
     return diceRoll;
   }
@@ -74,5 +64,9 @@ public class GameState {
 
   public void setWinner(Side winner) {
     this.winner = winner;
+  }
+
+  public void setMove(int move) {
+    this.move = move;
   }
 }
