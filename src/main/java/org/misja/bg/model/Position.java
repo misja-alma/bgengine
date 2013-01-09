@@ -12,11 +12,13 @@ public class Position {
 
   private final List<Integer> playerCheckers;
   private final List<Integer> opponentCheckers;
+  private final Side cubeOwner;
   private transient String id;
 
-  public Position(List<Integer> playerCheckers, List<Integer> opponentCheckers) {
+  public Position(List<Integer> playerCheckers, List<Integer> opponentCheckers, Side cubeOwner) {
     this.playerCheckers = playerCheckers;
     this.opponentCheckers = opponentCheckers;
+    this.cubeOwner = cubeOwner;
   }
 
   /**
@@ -149,5 +151,9 @@ public class Position {
       }
     }
     return -1;
+  }
+
+  public Side getCubeOwner() {
+    return cubeOwner;
   }
 }

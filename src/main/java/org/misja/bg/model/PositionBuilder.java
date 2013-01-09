@@ -8,6 +8,7 @@ import java.util.List;
 public class PositionBuilder {
   private List<Integer> playerCheckers = Lists.newArrayList();
   private List<Integer> opponentCheckers = Lists.newArrayList();
+  private Side cubeOwner;
 
   public Position build() {
     if(playerCheckers.size() != 15) {
@@ -16,7 +17,7 @@ public class PositionBuilder {
     if(opponentCheckers.size() != 15) {
       throw new InvalidStateException("Wrong number of checkers for Opponent!");
     }
-    return new Position(playerCheckers, opponentCheckers);
+    return new Position(playerCheckers, opponentCheckers, cubeOwner);
   }
 
   public PositionBuilder addCheckers(Side side, int... points) {
@@ -26,6 +27,11 @@ public class PositionBuilder {
 
   public PositionBuilder addCheckers(Side side, List<Integer> checkers) {
     getCheckersForPlayer(side).addAll(checkers);
+    return this;
+  }
+
+  public PositionBuilder addCubeOwner(Side owner) {
+    cubeOwner = owner;
     return this;
   }
 
